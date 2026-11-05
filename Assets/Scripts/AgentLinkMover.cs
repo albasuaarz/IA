@@ -16,16 +16,18 @@ namespace Unity.AI.Navigation.Samples
     /// Move an agent when traversing a OffMeshLink given specific animated methods
     /// </summary>
     [RequireComponent(typeof(NavMeshAgent))]
-    public class AgentLinkMover : MonoBehaviour
+    public class AgentLinkMover: MonoBehaviour
     {
         public OffMeshLinkMoveMethod m_Method = OffMeshLinkMoveMethod.Parabola;
-        public AnimationCurve m_Curve = new AnimationCurve();
+        public AnimationCurve m_Curve = new();
         private Animator m_Animator = new();
         private NavMeshAgent agent = new();
 
+
         IEnumerator Start()
         {
-            NavMeshAgent agent = GetComponent<NavMeshAgent>();
+            agent = GetComponent<NavMeshAgent>();
+            m_Animator = GetComponent<Animator>();
             agent.autoTraverseOffMeshLink = false;
             while (true)
             {
@@ -34,7 +36,9 @@ namespace Unity.AI.Navigation.Samples
                     if (m_Method == OffMeshLinkMoveMethod.NormalSpeed)
                         yield return StartCoroutine(NormalSpeed(agent));
                     else if (m_Method == OffMeshLinkMoveMethod.Parabola)
-                        yield return StartCoroutine(Parabola(agent, 2.0f, 0.5f));
+                        yield return StartCoroutine(Parabola(agent, 1.0f, 0.5f)); //<-- para un salto menor
+
+                    //yield return StartCoroutine(Parabola(agent, 2.0f, 0.5f));
                     else if (m_Method == OffMeshLinkMoveMethod.Curve)
                         yield return StartCoroutine(Curve(agent, 0.5f));
                     agent.CompleteOffMeshLink();
@@ -50,6 +54,13 @@ namespace Unity.AI.Navigation.Samples
             Vector3 endPos = data.endPos + Vector3.up * agent.baseOffset;
             while (agent.transform.position != endPos)
             {
+                // SOLO PARA LAS AVISPAS, PARA QUE MIREN EN LA DIRECCION QUE SE MUEVEN ***************
+                var turn = agent.steeringTarget;
+                Vector3 direction = (turn - transform.position).normalized;
+                Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));    
+                Quaternion rotation = Quaternion.Slerp(transform.rotation, lookRotation, 0.1f);                
+                //************************************************************************************
+
                 agent.transform.position =
                     Vector3.MoveTowards(agent.transform.position, endPos, agent.speed * Time.deltaTime);
                 yield return null;
@@ -63,7 +74,9 @@ namespace Unity.AI.Navigation.Samples
             Vector3 endPos = data.endPos + Vector3.up * agent.baseOffset;
             float normalizedTime = 0.0f;
             while (normalizedTime < 1.0f)
-            {
+            {       
+                m_Animator.SetBool("isJumping", true);
+
                 float yOffset = height * 4.0f * (normalizedTime - normalizedTime * normalizedTime);
                 agent.transform.position = Vector3.Lerp(startPos, endPos, normalizedTime) + yOffset * Vector3.up;
                 normalizedTime += Time.deltaTime / duration;
@@ -91,6 +104,7 @@ namespace Unity.AI.Navigation.Samples
             if (agent.isOnOffMeshLink == false)
             {
                 m_Animator.SetBool("isJumping", false);
+
             }
         }
     }
