@@ -286,7 +286,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1643114306384365484, guid: 01fe14e77fc86fa4dbf6c04461f8661e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1539041775}
   m_SourcePrefab: {fileID: 100100000, guid: 01fe14e77fc86fa4dbf6c04461f8661e, type: 3}
 --- !u!1 &1232985635
 GameObject:
@@ -385,6 +388,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1539041774 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1643114306384365484, guid: 01fe14e77fc86fa4dbf6c04461f8661e, type: 3}
+  m_PrefabInstance: {fileID: 1036055879}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1539041775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539041774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1823525ea3b7ab94197afadf5725e4f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnLayout
+  Layouts:
+  - {fileID: 1771142409315881719, guid: c5936cd86834ac84a9d612494eae2641, type: 3}
+  LayoutChoice: 0
 --- !u!1 &1774440879
 GameObject:
   m_ObjectHideFlags: 0
