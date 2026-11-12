@@ -2423,6 +2423,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5235550420094563541, guid: 0fc42112ee807c649a9b515ff6153697, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1128396898166706749}
+    - targetCorrespondingSourceObject: {fileID: 5235550420094563541, guid: 0fc42112ee807c649a9b515ff6153697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5394231833978598684}
   m_SourcePrefab: {fileID: 100100000, guid: 0fc42112ee807c649a9b515ff6153697, type: 3}
 --- !u!4 &233677942997502870 stripped
 Transform:
@@ -2483,6 +2486,27 @@ MonoBehaviour:
   m_NavMeshSurfaces:
   - {fileID: 3340305817014477987}
   - {fileID: 4392939391698596847}
+--- !u!135 &5394231833978598684
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609640119749939500}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.25
+  m_Center: {x: 0.25, y: 0.12149999, z: 0.25}
 --- !u!1001 &4821337716270843474
 PrefabInstance:
   m_ObjectHideFlags: 0
