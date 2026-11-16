@@ -7,10 +7,9 @@ public class AiTargetChomperTerrain : MonoBehaviour
 {
     private Transform Target;
     public float AttackDistance = 1.0f;
-
     private NavMeshAgent m_Agent;
     private Animator m_Animator;
-    public float m_Distance;
+    private float m_Distance;
 
 
     void Start()
@@ -34,6 +33,13 @@ public class AiTargetChomperTerrain : MonoBehaviour
             m_Agent.isStopped = false;
             m_Animator.SetBool("Attack", false);
             m_Agent.destination = Target.position;
+        }
+    }
+
+    private void OnAnimatorMove()
+    {
+        if (m_Animator.GetBool("Attack") == false) { 
+            m_Agent.speed = (m_Animator.deltaPosition / Time.deltaTime).magnitude;
         }
     }
 }

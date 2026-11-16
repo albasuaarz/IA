@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class AITargetChomper : MonoBehaviour
 {
 
-    [Header("Configyracion de las distancias")]
+    [Header("Configuracion de las distancias")]
     public Transform target;
     public float attackDistance = 2.0f;
     public float chaseDistance = 10.0f;
